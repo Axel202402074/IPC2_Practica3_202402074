@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario - Lista de Productos</title>
+    <style>
+        body { font-family: Arial; background-color: #f4f4f4; margin: 40px; }
+        h1 { color: #2c3e50; }
+        table { border-collapse: collapse; width: 100%; background: white; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #2c3e50; color: white; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .boton { padding: 8px 12px; background: #2ecc71; color: white; border-radius: 4px; text-decoration: none; }
+        .boton:hover { background: #27ae60; }
+        .acciones a { margin-right: 8px; }
+    </style>
+</head>
+<body>
+
+<h1>Inventario de Productos</h1>
+
+<a href="{% url 'crear_producto' %}" class="boton">➕ Agregar Producto</a>
+<br><br>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Categoría</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% if productos %}
+        {% for p in productos %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.categoria }}</td>
+            <td>Q{{ p.precio }}</td>
+            <td>{{ p.cantidad }}</td>
+            <td class="acciones">
+                <a href="{% url 'detalle_producto' p.id %}">👁 Ver</a>
+                <a href="{% url 'actualizar_producto' p.id %}">✏️ Editar</a>
+                <a href="{% url 'eliminar_producto' p.id %}">🗑 Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr><td colspan="6">No hay productos registrados.</td></tr>
+    {% endif %}
+</table>
+
+</body>
+</html>

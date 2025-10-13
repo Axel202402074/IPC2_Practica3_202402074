@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Producto</title>
+    <style>
+        body { font-family: Arial; background-color: #f9f9f9; margin: 40px; }
+        .card { background: white; padding: 25px; border-radius: 8px; width: 400px; margin: auto; text-align: center; }
+        button { padding: 10px 15px; border: none; border-radius: 5px; margin: 10px; color: white; cursor: pointer; }
+        .eliminar { background: #e74c3c; }
+        .cancelar { background: #95a5a6; }
+        a { text-decoration: none; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>¿Eliminar producto?</h2>
+    <p><strong>{{ producto.nombre }}</strong></p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="eliminar">Sí, eliminar</button>
+        <button class="cancelar"><a href="{% url 'lista_productos' %}">Cancelar</a></button>
+    </form>
+</div>
+
+</body>
+</html>

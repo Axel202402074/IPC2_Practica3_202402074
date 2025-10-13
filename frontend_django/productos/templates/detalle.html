@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Producto</title>
+    <style>
+        body { font-family: Arial; margin: 40px; background-color: #fafafa; }
+        .card { background: white; padding: 20px; border-radius: 8px; width: 400px; margin: auto; }
+        h2 { color: #2c3e50; }
+        p { margin: 6px 0; }
+        a { text-decoration: none; color: #3498db; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>{{ producto.nombre }}</h2>
+    <p><strong>Categoría:</strong> {{ producto.categoria }}</p>
+    <p><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+    <p><strong>Precio:</strong> Q{{ producto.precio }}</p>
+    <p><strong>Cantidad:</strong> {{ producto.cantidad }}</p>
+    <p><strong>Fecha de vencimiento:</strong> {{ producto.fecha_vencimiento|default:"N/A" }}</p>
+    <p><strong>Fecha de creación:</strong> {{ producto.fecha_creacion|default:"N/A" }}</p>
+    
+    <br>
+    <a href="{% url 'actualizar_producto' producto.id %}">✏️ Editar</a> |
+    <a href="{% url 'lista_productos' %}">⬅ Volver</a>
+</div>
+
+</body>
+</html>
