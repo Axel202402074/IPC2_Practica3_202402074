@@ -1,1 +1,53 @@
-[]
+[
+    {
+        "id": 1,
+        "nombre": "Leche Entera",
+        "categoria": "Lácteos",
+        "descripcion": "Leche entera 1 litro",
+        "precio": 16.0,
+        "cantidad": 45,
+        "fecha_vencimiento": "2025-12-31",
+        "fecha_creacion": "2025-10-17 21:04:29",
+        "fecha_modificacion": "2025-10-17 21:11:58"
+    },
+    {
+        "id": 2,
+        "nombre": "Aceite de Oliva",
+        "categoria": "Aceites",
+        "descripcion": "Aceite de oliva extra virgen 500ml",
+        "precio": 45.0,
+        "cantidad": 15,
+        "fecha_vencimiento": "",
+        "fecha_creacion": "2025-10-17 21:13:25"
+    },
+    {
+        "id": 3,
+        "nombre": "Pan Integral",
+        "categoria": "Panadería",
+        "descripcion": "Pan integral 500g",
+        "precio": 8.0,
+        "cantidad": 30,
+        "fecha_vencimiento": "2025-10-25",
+        "fecha_creacion": "2025-10-17 21:14:10"
+    },
+    {
+        "id": 4,
+        "nombre": "Manzanas",
+        "categoria": "Frutas",
+        "descripcion": "Manzanas rojas por kilo",
+        "precio": 18.0,
+        "cantidad": 25,
+        "fecha_vencimiento": "2025-10-30",
+        "fecha_creacion": "2025-10-17 21:14:47"
+    },
+    {
+        "id": 5,
+        "nombre": "Arroz Blanco",
+        "categoria": "Granos",
+        "descripcion": "Arroz blanco 1kg",
+        "precio": 12.5,
+        "cantidad": 100,
+        "fecha_vencimiento": "2026-12-31",
+        "fecha_creacion": "2025-10-17 21:15:02"
+    }
+]
