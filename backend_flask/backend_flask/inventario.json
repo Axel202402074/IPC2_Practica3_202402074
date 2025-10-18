@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "nombre": "Yogurt",
+        "categoria": "Lácteos",
+        "descripcion": "",
+        "precio": 12.0,
+        "cantidad": 10,
+        "fecha_vencimiento": "21212-12-12",
+        "fecha_creacion": "2025-10-17 22:57:05"
+    }
+]

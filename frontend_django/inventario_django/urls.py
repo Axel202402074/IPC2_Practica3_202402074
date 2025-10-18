@@ -3,5 +3,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('productos.urls')),  # 👈 Redirige todo a tu app de productos
+    path('', include('productos.urls')),  
 ]

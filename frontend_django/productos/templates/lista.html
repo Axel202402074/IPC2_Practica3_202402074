@@ -2,56 +2,136 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Inventario - Lista de Productos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de Productos</title>
     <style>
-        body { font-family: Arial; background-color: #f4f4f4; margin: 40px; }
-        h1 { color: #2c3e50; }
-        table { border-collapse: collapse; width: 100%; background: white; }
-        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background: #2c3e50; color: white; }
-        a { color: #007bff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .boton { padding: 8px 12px; background: #2ecc71; color: white; border-radius: 4px; text-decoration: none; }
-        .boton:hover { background: #27ae60; }
-        .acciones a { margin-right: 8px; }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .messages {
+            margin: 20px 0;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .actions a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        .actions a:hover {
+            text-decoration: underline;
+        }
+        .empty {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
+    <h1>Sistema de Gestión de Inventario</h1>
 
-<h1>Inventario de Productos</h1>
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
-<a href="{% url 'crear_producto' %}" class="boton">➕ Agregar Producto</a>
-<br><br>
-
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Categoría</th>
-        <th>Precio</th>
-        <th>Cantidad</th>
-        <th>Acciones</th>
-    </tr>
+    <a href="{% url 'crear_producto' %}" class="btn">+ Agregar Nuevo Producto</a>
 
     {% if productos %}
-        {% for p in productos %}
-        <tr>
-            <td>{{ p.id }}</td>
-            <td>{{ p.nombre }}</td>
-            <td>{{ p.categoria }}</td>
-            <td>Q{{ p.precio }}</td>
-            <td>{{ p.cantidad }}</td>
-            <td class="acciones">
-                <a href="{% url 'detalle_producto' p.id %}">👁 Ver</a>
-                <a href="{% url 'actualizar_producto' p.id %}">✏️ Editar</a>
-                <a href="{% url 'eliminar_producto' p.id %}">🗑 Eliminar</a>
-            </td>
-        </tr>
-        {% endfor %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Vencimiento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in productos %}
+            <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.nombre }}</td>
+                <td>{{ p.categoria }}</td>
+                <td>Q{{ p.precio }}</td>
+                <td>{{ p.cantidad }}</td>
+                <td>{{ p.fecha_vencimiento|default:"N/A" }}</td>
+                <td class="actions">
+                    <a href="{% url 'detalle_producto' p.id %}">Ver</a>
+                    <a href="{% url 'actualizar_producto' p.id %}">Editar</a>
+                    <a href="{% url 'eliminar_producto' p.id %}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     {% else %}
-        <tr><td colspan="6">No hay productos registrados.</td></tr>
+    <div class="empty">
+        <p>No hay productos en el inventario.</p>
+        <a href="{% url 'crear_producto' %}" class="btn">Agregar el primer producto</a>
+    </div>
     {% endif %}
-</table>
-
 </body>
 </html>

@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,10 +30,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'inventario_django.urls'
 
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'productos' / 'templates'],  # 👈 Ruta de templates
+        'DIRS': [os.path.join(BASE_DIR, 'productos', 'templates')],  # 👈 Cambia esto
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -185,7 +185,7 @@ def actualizar_producto(id):
                 'error': 'Producto no encontrado'
             }), 404
         
-        # Validar nombre si se proporciona
+        # Validar nombre 
         if 'nombre' in data:
             if not data['nombre'] or not data['nombre'].strip():
                 return jsonify({
@@ -194,7 +194,7 @@ def actualizar_producto(id):
                 }), 400
             producto['nombre'] = data['nombre'].strip()
         
-        # Validar categoría si se proporciona
+        # Validar categoría 
         if 'categoria' in data:
             if not data['categoria'] or not data['categoria'].strip():
                 return jsonify({
@@ -203,7 +203,7 @@ def actualizar_producto(id):
                 }), 400
             producto['categoria'] = data['categoria'].strip()
         
-        # Validar precio si se proporciona
+        # Validar precio 
         if 'precio' in data:
             try:
                 precio = float(data['precio'])
@@ -219,7 +219,7 @@ def actualizar_producto(id):
                     'error': 'El precio debe ser un número válido'
                 }), 400
         
-        # Validar cantidad si se proporciona
+        # Validar cantidad 
         if 'cantidad' in data:
             try:
                 cantidad = int(data['cantidad'])
@@ -235,14 +235,14 @@ def actualizar_producto(id):
                     'error': 'La cantidad debe ser un número entero válido'
                 }), 400
         
-        # Actualizar descripción y fecha de vencimiento si se proporcionan
+        # Actualizar descripción y fecha 
         if 'descripcion' in data:
             producto['descripcion'] = data['descripcion'].strip()
         
         if 'fecha_vencimiento' in data:
             producto['fecha_vencimiento'] = data['fecha_vencimiento'].strip()
         
-        # Agregar fecha de modificación
+        # Agregar fecha 
         producto['fecha_modificacion'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         
         guardar_inventario(productos)
@@ -291,8 +291,7 @@ def eliminar_producto(id):
 if __name__ == '__main__':
     try:
         inicializar_inventario()
-        print("[OK] Inventario inicializado correctamente")
-        print("[OK] Servidor Flask corriendo en http://localhost:5000")
+        print("Servidor Flask corriendo en http://localhost:5000")
         app.run(debug=True, port=5000)
     except Exception as e:
-        print(f"[ERROR] Error al iniciar el servidor: {e}")
+        print(f"Error al iniciar el servidor: {e}")
